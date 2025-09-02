@@ -44,10 +44,23 @@ k <- which(seqnames(rowRanges(seRNA_B)) %in% seqnames(proj_B@genomeAnnotation$ch
 seRNA_B = seRNA_B[k,]
 k = which(rownames(proj_B@cellColData) %in% colnames(seRNA_B) == T)
 proj_B = proj_B[k]
-
-
 seRNAcombined <- cbind(assay(seRNA_A), assay(seRNA_B))
+
 seRNA_all <- SummarizedExperiment(assays = list(counts = seRNAcombined), rowRanges = rowRanges(seRNA_A))
 proj_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "Neurog2", copyArrows = TRUE)
 proj_ALL <- addGeneExpressionMatrix(input = project_ALL, seRNA = seRNA_all)
+
+
+# 1️⃣ Clean ATAC barcodes from proj_ALL
+atac_clean <- gsub(".*#", "", rownames(proj_ALL@cellColData))
+cat("Number of ATAC cells:", length(atac_clean), "\n")
+
+# 2️⃣ Clean RNA barcodes from the combined SE
+rna_clean <- gsub("-1$", "", colnames(seRNAcombined))
+cat("Number of RNA barcodes:", length(rna_clean), "\n")
+
+# 3️⃣ Optional: count how many are in both
+common_cells <- intersect(atac_clean, rna_clean)
+cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\n")
+
 saveArchRProject(ArchRProj = proj_ALL, outputDirectory = "Neurog2", load = FALSE)
