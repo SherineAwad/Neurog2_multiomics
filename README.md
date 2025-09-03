@@ -45,8 +45,8 @@ common_cells <- intersect(atac_clean, rna_clean)
 cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\n")
 
 
-| Metric                               | Count  |
-|--------------------------------------|--------|
+| Metric                              | Count  |
+|-------------------------------------|--------|
 | Number of ATAC cells                | 33     |
 | Number of RNA barcodes              | 22,232 |
 | Number of barcodes present in both  | 0      |
