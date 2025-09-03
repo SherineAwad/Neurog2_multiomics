@@ -45,3 +45,8 @@ cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\
 | Number of barcodes present in both    | 0      |
 
 
+## Cell Ranger summary 
+
+![Cell Ranger TH1](th1.png)
+![Cell Ranger TH2](th2.png)
+
