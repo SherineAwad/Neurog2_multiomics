@@ -48,6 +48,8 @@ cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\
 
 ## Cell Ranger html 
 
-<a href="pages/TH1.html" target="_blank">Cell Ranger TH1 Page</a>
-<a href="pages/TH2.html" target="_blank">Cell Ranger TH2 Page</a>
+[Cell Ranger TH1 Page](TH1.html)
+[Cell Ranger TH2 Page](TH2.html)
+
+
 
