@@ -8,6 +8,7 @@ library(pheatmap)
 library(chromVARmotifs)
 library(BSgenome.Mmusculus.UCSC.mm39)      # Genome sequences (chrom sizes)
 library(ensembldb)
+library(GenomicFeatures)  # dependency for working with GTFs
 
 
 setwd("/nfs/turbo/umms-thahoang/sherine/Neurog2_multiomics")
