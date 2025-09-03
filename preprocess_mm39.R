@@ -1,4 +1,3 @@
-library(ArchR)
 library(future)
 library(ggplot2)
 library(patchwork)
@@ -9,6 +8,7 @@ library(chromVARmotifs)
 library(BSgenome.Mmusculus.UCSC.mm39)      # Genome sequences (chrom sizes)
 library(ensembldb)
 library(GenomicFeatures)  # dependency for working with GTFs
+library(ArchR)
 
 
 setwd("/nfs/turbo/umms-thahoang/sherine/Neurog2_multiomics")
@@ -20,10 +20,12 @@ all.equal(names(atacFiles), names(rnaFiles))
 
 
 # Create a gene annotation object from EnsDb
+# Build EnsDb from GTF (no genome argument needed)
 edb <- makeEnsembldbFromGtf(
-  gtf = "Mus_musculus.GRCm39.103.gtf",
-  genome = "Mus_musculus.GRCm39.dna.primary_assembly.fa"
+    gtf = "Mus_musculus.GRCm39.103.gtf",
+    organism = "Mus musculus"
 )
+
 
 # Create a gene annotation object from EnsDb
 geneAnnotation <- createGeneAnnotation(
