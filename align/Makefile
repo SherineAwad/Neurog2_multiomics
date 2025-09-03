@@ -8,23 +8,22 @@ all: TH1 TH2
 # Rules for each sample with increased cores and memory
 TH1:
 	$(CELLRANGER)/cellranger-arc count \
-		--id=TH1 \
-		--reference=$(MM10) \
-		--fastqs=$(FASTQS) \
-		--sample=13793-TH-1-GEX,13793-TH-1-ATAC \
-		--localcores=16 \
-		--localmem=48
+	--id=TH1 \
+	--reference=$(MM10) \
+	--libraries=$(FASTQS)/TH1_libraries.csv \
+	--localcores=16 \
+	--localmem=48
 
 TH2:
 	$(CELLRANGER)/cellranger-arc count \
-		--id=TH2 \
-		--reference=$(MM10) \
-		--fastqs=$(FASTQS) \
-		--sample=13793-TH-2-GEX,13793-TH-2-ATAC \
-		--localcores=16 \
-		--localmem=48
+	--id=TH2 \
+	--reference=$(MM10) \
+	--libraries=$(FASTQS)/TH2_libraries.csv \
+	--localcores=16 \
+	--localmem=48
 
 # Optional: clean outputs
 clean:
 	rm -rf TH1 TH2
+
 
