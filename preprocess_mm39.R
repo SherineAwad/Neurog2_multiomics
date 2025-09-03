@@ -21,10 +21,12 @@ all.equal(names(atacFiles), names(rnaFiles))
 
 # Create a gene annotation object from EnsDb
 # Build EnsDb from GTF (no genome argument needed)
-edb <- makeEnsembldbFromGtf(
-    gtf = "Mus_musculus.GRCm39.103.gtf",
-    organism = "Mus musculus"
+
+edb <- ensDbFromGtf(
+  gtf = "Mus_musculus.GRCm39.103.gtf",
+  organism = "Mus musculus"
 )
+
 
 
 # Create a gene annotation object from EnsDb
