@@ -78,5 +78,30 @@ cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\
 
 ## QC before filtering 
 
-![Multiome cell summary](align/mNeurog2_beforeFilterQC.png)
+![Pre filtering QC](align_mm10/mNeurog2_beforeFilterQC.png)
+
+## After filtering 
+
+We used the following filtering parameters:
+
+| Parameter       | Description                           | Default Value |
+|-----------------|---------------------------------------|---------------|
+| `minTSS`        | Minimum TSS enrichment for ATAC cells | 10            |
+| `minFrags`      | Minimum number of ATAC fragments      | 5,000         |
+| `minGexUMI`     | Minimum number of RNA UMIs per cell   | 1,000         |
+| `maxGexUMI`     | Maximum number of RNA UMIs per cell   | 15,000        |
+| `minGexGenes`   | Minimum number of genes detected      | 500           |
+| `maxGexGenes`   | Maximum number of genes detected      | 5,000         |
+
+
+Number of cells per sample after filtering:
+
+| Condition | Control | KO    |
+|-----------|---------|-------|
+|**Total**  |  7179   | 7205  |
+
+
+
+![After filtering QC](align_mm10/mNeurog2_postFilterQC.png)
+
 
