@@ -58,8 +58,10 @@ cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\
 
 ## Cell ranger web summary 
 
-[TH1 web summary](TH1_mm10.html)
-[TH2 web summary](TH2_mm10.html)
+[TH1 web summary](align_mm10/TH1_mm10.html)
+
+
+[TH2 web summary](align_mm10/TH2_mm10.html)
 
 
 | Metric                              | Count  |
