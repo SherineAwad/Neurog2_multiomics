@@ -56,6 +56,11 @@ cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\
 
 # re-align FASTQ files using cellranger-arc to mm10 
 
+## Cell ranger web summary 
+
+[TH1 web summary](TH1_mm10.html)
+[TH2 web summary](TH2_mm10.html)
+
 
 | Metric                              | Count  |
 |-------------------------------------|--------|
