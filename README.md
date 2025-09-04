@@ -53,3 +53,28 @@ cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\
 
 ``` 
 
+
+# Align FASTQ file using cellranger to mm10 
+
+
+| Metric                              | Count  |
+|-------------------------------------|--------|
+| Number of ATAC cells                | 23,969 |
+| Number of RNA barcodes              | 22,105 |
+| Number of barcodes present in both  | 0      |
+
+## Before filtering 
+
+| cell_type | ATAC_only | ATAC+RNA |
+|-----------|-----------|----------|
+| **Total** | 2,305     | 21,664   |
+
+| Condition | Control | KO    |
+|-----------|---------|-------|
+| **Total** | 11,409  |12,560 |
+
+
+## QC before filtering 
+
+![Multiome cell summary](align/mNeurog2_beforeFilterQC.png)
+
