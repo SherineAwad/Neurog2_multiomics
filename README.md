@@ -65,9 +65,12 @@ cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\
 
 ## Before filtering 
 
-| cell_type | ATAC+RNA |
-|-----------|----------|
-| **Total** | 21,664   |
+
+| cell_type | ATAC_only | ATAC+RNA |
+|-----------|-----------|----------|
+| **Total** | 2,305     | 21,664   |
+
+
 
 | Condition | Control | KO    |
 |-----------|---------|-------|
