@@ -7,13 +7,15 @@ library(argparse)
 # -------------------------------
 parser <- ArgumentParser(description = "ArchR project")
 parser$add_argument("--project", required = TRUE, help = "Path to ArchR project")
-parser$add_argument("--minTSS", type = "double", default = 10)
-parser$add_argument("--minFrags", type = "double", default = 5000)
-parser$add_argument("--minGexUMI", type = "double", default = 1000)
-parser$add_argument("--maxGexUMI", type = "double", default = 15000)
-parser$add_argument("--minGexGenes", type = "double", default = 500)
-parser$add_argument("--maxGexGenes", type = "double", default = 5000)
+parser$add_argument("--minTSS", type = "double", default = 10, help = "Minimum TSS enrichment")
+parser$add_argument("--minFrags", type = "double", default = 5000, help = "Minimum number of fragments")
+parser$add_argument("--minGexUMI", type = "double", default = 1000, help = "Minimum GEX UMI counts")
+parser$add_argument("--maxGexUMI", type = "double", default = 30000, help = "Maximum GEX UMI counts")
+parser$add_argument("--minGexGenes", type = "double", default = 500, help = "Minimum number of detected genes")
+parser$add_argument("--maxGexGenes", type = "double", default = 7000, help = "Maximum number of detected genes")
+
 args <- parser$parse_args()
+
 
 # -------------------------------
 # Load project
@@ -37,6 +39,14 @@ slotNames(proj_ALL)
 proj_ALL@sampleMetadata
 proj_ALL@cellColData
 
+# Before filtering
+cat("Before filtering:\n")
+summary(proj_ALL@cellColData[, c("TSSEnrichment", "nFrags", "Gex_nUMI", "Gex_nGenes")])
+
+cat("Number of cells per sample before filtering:\n")
+print(table(proj_ALL$Sample))
+
+
 # -------------------------------
 # Apply filtering dynamically
 # -------------------------------
@@ -59,6 +69,9 @@ proj_ALL <- proj_ALL[complete.cases(proj_ALL@cellColData[,
 # -------------------------------
 # After Filtering Summary
 # -------------------------------
+cat("Before filtering:\n")
+summary(proj_ALL@cellColData[, c("TSSEnrichment", "nFrags", "Gex_nUMI", "Gex_nGenes")])
+
 cat("Number of cells per sample after filtering:\n")
 print(table(proj_ALL$Sample))
 

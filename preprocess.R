@@ -8,12 +8,17 @@ library(pheatmap)
 library(chromVARmotifs)
 library(EnsDb.Mmusculus.v79)
 library(BSgenome.Mmusculus.UCSC.mm10)
+library(argparse)
 
 
-setwd("/nfs/turbo/umms-thahoang/sherine/Neurog2_multiomics/align")
+setwd(getwd())
 addArchRThreads(threads = 6)
 addArchRGenome("mm10")
-project_name ="mNeurog2"
+parser <- ArgumentParser(description = "ArchR project")
+parser$add_argument("--project", required = TRUE, help = "Path to ArchR project")
+args <- parser$parse_args()
+project_name = args$project
+
 atacFiles <- c("Control" = "TH1_atac_fragments.tsv.gz", "KO" = "TH2_atac_fragments.tsv.gz")
 rnaFiles <- c("Control" = "TH1_filtered_feature_bc_matrix.h5", "KO" = "TH2_filtered_feature_bc_matrix.h5")
 all.equal(names(atacFiles), names(rnaFiles))
@@ -26,7 +31,7 @@ ArrowFiles <- createArrowFiles(
   addGeneScoreMat = TRUE, force=FALSE)
 
 ArrowFiles <- c("Control.arrow","KO.arrow")
-project_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "mNeurog2", copyArrows = FALSE)
+project_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = project_name, copyArrows = FALSE)
 
 proj_A <- ArchRProject(ArrowFiles[1], outputDirectory = "Control", copyArrows = FALSE)
 proj_B <- ArchRProject(ArrowFiles[2], outputDirectory = "KO", copyArrows = FALSE)
@@ -47,7 +52,7 @@ proj_B = proj_B[k]
 seRNAcombined <- cbind(assay(seRNA_A), assay(seRNA_B))
 
 seRNA_all <- SummarizedExperiment(assays = list(counts = seRNAcombined), rowRanges = rowRanges(seRNA_A))
-proj_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "mNeurog2", copyArrows = TRUE)
+proj_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = project_name, copyArrows = TRUE)
 proj_ALL <- addGeneExpressionMatrix(input = project_ALL, seRNA = seRNA_all)
 
 
@@ -63,4 +68,4 @@ cat("Number of RNA barcodes:", length(rna_clean), "\n")
 common_cells <- intersect(atac_clean, rna_clean)
 cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\n")
 
-saveArchRProject(ArchRProj = proj_ALL, outputDirectory = "mNeurog2", load = FALSE)
+saveArchRProject(ArchRProj = proj_ALL, outputDirectory = project_name, load = FALSE)

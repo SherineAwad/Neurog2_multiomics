@@ -12,7 +12,7 @@ library(irlba)
 library(argparse)
 
 
-setwd("/nfs/turbo/umms-thahoang/sherine/Neurog2_multiomics/align_mm10")
+setwd(getwd())
 
 # -------------------------------
 # Parse command line arguments
@@ -46,7 +46,7 @@ proj_ALL <- addIterativeLSI(
     n.start = 10
   ),
   saveIterations = FALSE,
-  depthCol = "nFrags"
+  depthCol = "nFrags", force=TRUE
 )
 
 # -------------------------------
@@ -65,7 +65,7 @@ proj_ALL <- addIterativeLSI(
   depthCol = "Gex_nUMI",
   varFeatures = 2500,
   firstSelection = "variable",
-  binarize = FALSE
+  binarize = FALSE, force =TRUE
 )
 
 # -------------------------------
@@ -74,8 +74,9 @@ proj_ALL <- addIterativeLSI(
 proj_ALL <- addCombinedDims(
   ArchRProj = proj_ALL,
   reducedDims = c("LSI_ATAC", "LSI_RNA"),
-  name = "LSI_Combined",
+  name = "LSI_Combined"
 )
+
 
 # -------------------------------
 # Add UMAPs
