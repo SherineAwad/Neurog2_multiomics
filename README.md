@@ -63,9 +63,10 @@ Number of cells per sample after filtering:
 
 ![Clsuters_Samples_Sample](mNeurog2_SamplesUMAP_bySample.png)
 
+![Clusters_Samples_ClustersUMAP](mNeurog2_SamplesUMAP_byCluster.png)
+
 ![ClustersUMI](mNeurog2_perClustersnUMI.png)
 
-![Clusters_Samples_ClustersUMAP](mNeurog2_SamplesUMAP_byCluster.png)
 
 
 
