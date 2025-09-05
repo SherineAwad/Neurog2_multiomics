@@ -5,14 +5,14 @@ library(argparse)
 # -------------------------------
 # Parse command line arguments
 # -------------------------------
-parser <- ArgumentParser(description = "Filter ArchR project cells and generate post-QC plots")
+parser <- ArgumentParser(description = "ArchR project")
 parser$add_argument("--project", required = TRUE, help = "Path to ArchR project")
-parser$add_argument("--minTSS", type = "double", default = 4)
-parser$add_argument("--minFrags", type = "double", default = 2000)
-parser$add_argument("--minGexUMI", type = "double", default = 10)
-parser$add_argument("--maxGexUMI", type = "double", default = 30000)
-parser$add_argument("--minGexGenes", type = "double", default = 10)
-parser$add_argument("--maxGexGenes", type = "double", default = 7000)
+parser$add_argument("--minTSS", type = "double", default = 10)
+parser$add_argument("--minFrags", type = "double", default = 5000)
+parser$add_argument("--minGexUMI", type = "double", default = 1000)
+parser$add_argument("--maxGexUMI", type = "double", default = 15000)
+parser$add_argument("--minGexGenes", type = "double", default = 500)
+parser$add_argument("--maxGexGenes", type = "double", default = 5000)
 args <- parser$parse_args()
 
 # -------------------------------
@@ -21,7 +21,8 @@ args <- parser$parse_args()
 addArchRThreads(threads = 4)
 addArchRGenome("mm10")
 
-proj_ALL <- loadArchRProject(path = args$project, force = FALSE, showLogo = TRUE)
+project_name = args$project
+proj_ALL <- loadArchRProject(path = project_name, force = FALSE, showLogo = TRUE)
 
 # Print the ArchRProject object
 print(proj_ALL)
@@ -36,32 +37,6 @@ slotNames(proj_ALL)
 proj_ALL@sampleMetadata
 proj_ALL@cellColData
 
-valid_cells <- proj_ALL$cellNames[complete.cases(proj_ALL@cellColData[, c("TSSEnrichment","nFrags","Gex_nUMI","Gex_nGenes")])]
-proj_ALL <- subsetArchRProject(proj_ALL, cells = valid_cells)
-
-
-# -------------------------------
-# Before Filtering Summary
-# -------------------------------
-cat("Number of cells per sample before filtering:\n")
-print(table(proj_ALL$Sample))
-
-figure_name_pdf <- paste0(args$project, "_beforeFilterQC.pdf")
-pdf(file = figure_name_pdf, width = 12, height = 8)
-p1 <- plotGroups(proj_ALL, groupBy = "Sample", colorBy = "cellColData",
-                 name = "TSSEnrichment", plotAs = "violin", alpha = 0.4,
-                 addBoxPlot = TRUE, na.rm = TRUE)
-p2 <- plotGroups(proj_ALL, groupBy = "Sample", colorBy = "cellColData",
-                 name = "log10(nFrags)", plotAs = "violin", alpha = 0.4,
-                 addBoxPlot = TRUE, na.rm = TRUE)
-p3 <- plotGroups(proj_ALL, groupBy = "Sample", colorBy = "cellColData",
-                 name = "Gex_nUMI", plotAs = "violin", alpha = 0.4, addBoxPlot = TRUE,na.rm = TRUE)
-p4 <- plotGroups(proj_ALL, groupBy = "Sample", colorBy = "cellColData",
-                 name = "Gex_nGenes", plotAs = "violin", alpha = 0.4, addBoxPlot = TRUE,na.rm = TRUE)
-(p1 | p2) / (p3 | p4)
-dev.off()
-if (FALSE)
-{
 # -------------------------------
 # Apply filtering dynamically
 # -------------------------------
@@ -88,10 +63,11 @@ cat("Number of cells per sample after filtering:\n")
 print(table(proj_ALL$Sample))
 
 # -------------------------------
-# QC Plots after filtering (PDF + PNG)
+# QC Plots after filtering PNG
 # -------------------------------
-figure_name_pdf <- paste0(args$project, "_postFilterQC.pdf")
-pdf(file = figure_name_pdf, width = 12, height = 8)
+figure_name_png <- paste0(project_name, "_postFilterQC.png")
+
+png(file = figure_name_png, width = 12, height = 8, units = "in", res = 300)
 
 p1 <- plotGroups(proj_ALL, groupBy = "Sample", colorBy = "cellColData",
                  name = "TSSEnrichment", plotAs = "violin", alpha = 0.4, addBoxPlot = TRUE)
@@ -103,7 +79,9 @@ p4 <- plotGroups(proj_ALL, groupBy = "Sample", colorBy = "cellColData",
                  name = "Gex_nGenes", plotAs = "violin", alpha = 0.4, addBoxPlot = TRUE)
 
 (p1 | p2) / (p3 | p4)
+
 dev.off()
-saveArchRProject(ArchRProj = proj_ALL, outputDirectory = "Neurog2", load = FALSE)
-}
+
+
+saveArchRProject(ArchRProj = proj_ALL, outputDirectory = project_name, load = FALSE)
 

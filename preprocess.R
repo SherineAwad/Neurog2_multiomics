@@ -10,10 +10,10 @@ library(EnsDb.Mmusculus.v79)
 library(BSgenome.Mmusculus.UCSC.mm10)
 
 
-setwd("/nfs/turbo/umms-thahoang/sherine/Neurog2_multiomics")
+setwd("/nfs/turbo/umms-thahoang/sherine/Neurog2_multiomics/align")
 addArchRThreads(threads = 6)
 addArchRGenome("mm10")
-project_name ="Neurog2"
+project_name ="mNeurog2"
 atacFiles <- c("Control" = "TH1_atac_fragments.tsv.gz", "KO" = "TH2_atac_fragments.tsv.gz")
 rnaFiles <- c("Control" = "TH1_filtered_feature_bc_matrix.h5", "KO" = "TH2_filtered_feature_bc_matrix.h5")
 all.equal(names(atacFiles), names(rnaFiles))
@@ -22,11 +22,11 @@ ArrowFiles <- createArrowFiles(
   inputFiles = atacFiles,
   sampleNames = names(atacFiles),
   minTSS = 4,
-  minFrags = 1000,
+  minFrags = 500,
   addGeneScoreMat = TRUE, force=FALSE)
 
 ArrowFiles <- c("Control.arrow","KO.arrow")
-project_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "Neurog2", copyArrows = FALSE)
+project_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "mNeurog2", copyArrows = FALSE)
 
 proj_A <- ArchRProject(ArrowFiles[1], outputDirectory = "Control", copyArrows = FALSE)
 proj_B <- ArchRProject(ArrowFiles[2], outputDirectory = "KO", copyArrows = FALSE)
@@ -47,7 +47,7 @@ proj_B = proj_B[k]
 seRNAcombined <- cbind(assay(seRNA_A), assay(seRNA_B))
 
 seRNA_all <- SummarizedExperiment(assays = list(counts = seRNAcombined), rowRanges = rowRanges(seRNA_A))
-proj_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "Neurog2", copyArrows = TRUE)
+proj_ALL <- ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "mNeurog2", copyArrows = TRUE)
 proj_ALL <- addGeneExpressionMatrix(input = project_ALL, seRNA = seRNA_all)
 
 
@@ -63,4 +63,4 @@ cat("Number of RNA barcodes:", length(rna_clean), "\n")
 common_cells <- intersect(atac_clean, rna_clean)
 cat("Number of barcodes present in both ATAC and RNA:", length(common_cells), "\n")
 
-saveArchRProject(ArchRProj = proj_ALL, outputDirectory = "Neurog2", load = FALSE)
+saveArchRProject(ArchRProj = proj_ALL, outputDirectory = "mNeurog2", load = FALSE)
