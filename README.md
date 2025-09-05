@@ -61,10 +61,11 @@ Number of cells per sample after filtering:
 
 ## Adding UMAP and clustering 
 
-![Clusters_Samples_ClustersUMAP](mNeurog2_SamplesUMAP_byCluster.png)
-
 ![Clsuters_Samples_Sample](mNeurog2_SamplesUMAP_bySample.png)
 
-![ClustersUMI](mNeurog2_perClustersnUMI.png) 
+![ClustersUMI](mNeurog2_perClustersnUMI.png)
+
+![Clusters_Samples_ClustersUMAP](mNeurog2_SamplesUMAP_byCluster.png)
+
 
 
