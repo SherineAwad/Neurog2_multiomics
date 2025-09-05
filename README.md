@@ -79,6 +79,9 @@ We used the following filtering parameters:
 
 ![ClustersUMI](Neurog2_perClustersnUMI.png)
 
+## Per Clusters QC 
+
+![Per Clusters QC](Neurog2_perClusterQC.png)
 
 # Marker Genes
 
@@ -117,7 +120,4 @@ We used the following filtering parameters:
 <img src="Neurog2_UMAP_Zscore_Rbfox3.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Tfap2a.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Glul.png?v=2" width="200">
 
 <img src="Neurog2_UMAP_Zscore_Csf1r.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Pax2.png?v=2" width="200">
-
-
-
 
