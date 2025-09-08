@@ -121,3 +121,13 @@ We used the following filtering parameters:
 
 <img src="Neurog2_UMAP_Zscore_Csf1r.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Pax2.png?v=2" width="200">
 
+
+# Refining 
+
+### After removing clusters 1, 2, 3, 4, 5, 6, and 21
+
+<img src="Neurog2_refined_ClustersUMAP.png" width =200> 
+<img src="Neurog2_CellTypeUMAP_Filtered.png" width =200>
+
+
+ 
