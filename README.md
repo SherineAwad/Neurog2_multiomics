@@ -126,9 +126,9 @@ We used the following filtering parameters:
 
 ### After removing clusters 1, 2, 3, 4, 5, 6, and 21
 
-<img src="Neurog2_refined_ClustersUMAP.png?v=2" width =200> 
+<img src="Neurog2_refined_ClustersUMAP.png?v=2" width =600> 
 
-<img src="Neurog2_CellTypeUMAP_Filtered.png?v=2" width =200>
+<img src="Neurog2_CellTypeUMAP_Filtered.png?v=2" width =600>
 
 
  
