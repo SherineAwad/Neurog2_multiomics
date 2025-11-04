@@ -43,4 +43,45 @@ We used the following filtering parameters:
 
 
 
+# Marker Genes
+
+<img src="Neurog2_UMAP_Zscore_Sox9.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Rho.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Gad1.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Emx1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Pax6.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Apoe.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Ascl1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Chat.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Lhx2.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Otx2.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Neurog2.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Ccr2.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Prdx6.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Gfap.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Elavl4.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Lhx1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Notch1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Bsn.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Elavl3.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Tie1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Vim.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Slc17a7.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Sox11.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Acta2.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Rlbp1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Prdm1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Calb1.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Rpe65.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Malat1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Lhx4.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Insm1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Kcnj8.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Slc1a3.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Nrl.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Arr3.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Foxn4.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Hes1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Isl1.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Calb2.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Pou4f2.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Hes5.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Cabp5.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Sebox.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Atoh7.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Abca8a.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Slc6a9.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Olig2.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Aqp4.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Rbfox3.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Tfap2a.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Glul.png?v=2" width="200">
+
+<img src="Neurog2_UMAP_Zscore_Csf1r.png?v=2" width="200"> <img src="Neurog2_UMAP_Zscore_Pax2.png?v=2" width="200">
+
+
+
+
  
