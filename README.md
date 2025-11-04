@@ -1,15 +1,9 @@
 # Neurog2 Multiomics 
 
 
-
-
 ## QC before filtering 
 
-![Pre filtering QC](Neurog2_preFilterQC.png)
-
 ## After filtering 
-
-We used the following filtering parameters:
 
 We used the following filtering parameters:
 
@@ -24,12 +18,6 @@ We used the following filtering parameters:
 
 
 
-### Number of cells per sample before filtering
-
-| Sample  | Cells |
-|---------|-------|
-| Control | 7283  |
-| OE      | 7561  |
 
 ### Number of cells per sample after filtering
 
