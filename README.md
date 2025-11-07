@@ -109,7 +109,7 @@ We used the following filtering parameters:
 
 ![PEAKS](peaks.png) 
 
-#Motifs
+# Motifs
 
 ![Motifs](motifs.png) 
 
