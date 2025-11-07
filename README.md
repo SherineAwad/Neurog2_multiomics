@@ -105,4 +105,9 @@ We used the following filtering parameters:
 ![HEATMAP](Neurog2_heatmap.png)
 
 
+# Peaks 
+
+![PEAKS](peaks.png) 
+
+
  
