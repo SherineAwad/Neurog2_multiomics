@@ -1,0 +1,5 @@
+project: "Neurog2"
+threads: 8
+markers: "markers.txt"
+annotations: "annotations.csv"
+
