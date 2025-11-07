@@ -81,3 +81,11 @@ if (length(matrices) == 0) {
 }
 
 cat("\n=== DEBUG COMPLETE ===\n")
+
+# Check what's available in the project
+names(proj@cellColData)
+
+cat("Group Coverages") 
+# Check if coverage files exist
+list.files(file.path(getOutputDirectory(proj), "GroupCoverages"))
+
