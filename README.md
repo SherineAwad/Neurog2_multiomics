@@ -102,7 +102,7 @@ We used the following filtering parameters:
 # DGE Heatmap 
 
 
-![HEATMAP](Neurog2_heatmap.png)
+![HEATMAP](Neurog2_heatmap.png?v=2)
 
 
 # Peaks 

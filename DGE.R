@@ -12,6 +12,7 @@ suppressPackageStartupMessages({
   library(EnsDb.Mmusculus.v79)
   library(BSgenome.Mmusculus.UCSC.mm10)
   library(argparse)
+  library(ComplexHeatmap)
 })
 
 # ----------------------------
@@ -67,13 +68,36 @@ subsetSE <- features[which(rowData(features)$name %in% top_genes),]
 figure_name <- file.path(project_path, paste0("DEG_Heatmap.pdf"))
 pdf(file = figure_name, width = 12)
 
+# FIX: Create heatmap with all row labels
 HeatmapObj <- plotMarkerHeatmap(
   seMarker = subsetSE,
   cutOff = "FDR <= 0.1 & abs(Log2FC) >= 0.5",
-  plotLog2FC = TRUE
+  plotLog2FC = TRUE,
+  labelRows = TRUE,  # Force all row labels
+  nLabel = 50       # Label all 50 rows
 )
 
 draw(HeatmapObj, heatmap_legend_side = "bot", annotation_legend_side = "bot")
+dev.off()
+
+# Alternative: Manual heatmap with full control
+figure_name2 <- file.path(project_path, paste0("DEG_Heatmap_FullLabels.pdf"))
+pdf(file = figure_name2, width = 12)
+
+# Extract the matrix for manual plotting
+markerMatrix <- assays(subsetSE)$Mean
+rownames(markerMatrix) <- rowData(subsetSE)$name
+
+pheatmap(
+  markerMatrix,
+  cluster_rows = TRUE,
+  cluster_cols = TRUE,
+  scale = "row",
+  show_rownames = TRUE,  # Show ALL row names
+  fontsize_row = 8,      # Adjust font size if needed
+  main = "Differential Gene Expression - Control vs OE"
+)
+
 dev.off()
 
 # ----------------------------
@@ -98,5 +122,4 @@ write.csv(df, filename, row.names = FALSE)
 # ----------------------------
 saveArchRProject(ArchRProj = myProject, outputDirectory = project_path, load = FALSE)
 
-cat("✅ DGE analysis complete. Heatmap and CSV saved.\n")
-
+cat("✅ DGE analysis complete. Heatmaps and CSV saved.\n")
