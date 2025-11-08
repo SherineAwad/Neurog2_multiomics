@@ -45,13 +45,14 @@ if(!all(c("Control", "OE") %in% sample_groups)){
 }
 
 # ----------------------------
-# Differential Gene Expression
+# Differential Gene Expression - FIXED BACKGROUND
 # ----------------------------
-# Compute DE for all groups vs background (both Control and OE will be in the matrix)
 features <- getMarkerFeatures(
   ArchRProj = myProject,
   useMatrix = "GeneExpressionMatrix",
   groupBy = groupBy,
+  useGroups = "OE",
+  bgdGroups = "Control",
   bias = c("Gex_nUMI","Gex_nGenes"),
   testMethod = "wilcoxon"
 )
@@ -68,40 +69,20 @@ subsetSE <- features[which(rowData(features)$name %in% top_genes),]
 figure_name <- file.path(project_path, paste0("DEG_Heatmap.pdf"))
 pdf(file = figure_name, width = 12)
 
-# FIX: Create heatmap with all row labels
+# ONE HEATMAP WITH FULL LABELS
 HeatmapObj <- plotMarkerHeatmap(
   seMarker = subsetSE,
   cutOff = "FDR <= 0.1 & abs(Log2FC) >= 0.5",
   plotLog2FC = TRUE,
-  labelRows = TRUE,  # Force all row labels
-  nLabel = 50       # Label all 50 rows
+  labelRows = TRUE,
+  nLabel = 50
 )
 
 draw(HeatmapObj, heatmap_legend_side = "bot", annotation_legend_side = "bot")
 dev.off()
 
-# Alternative: Manual heatmap with full control
-figure_name2 <- file.path(project_path, paste0("DEG_Heatmap_FullLabels.pdf"))
-pdf(file = figure_name2, width = 12)
-
-# Extract the matrix for manual plotting
-markerMatrix <- assays(subsetSE)$Mean
-rownames(markerMatrix) <- rowData(subsetSE)$name
-
-pheatmap(
-  markerMatrix,
-  cluster_rows = TRUE,
-  cluster_cols = TRUE,
-  scale = "row",
-  show_rownames = TRUE,  # Show ALL row names
-  fontsize_row = 8,      # Adjust font size if needed
-  main = "Differential Gene Expression - Control vs OE"
-)
-
-dev.off()
-
 # ----------------------------
-# Save DEGs to CSV
+# Save DGEs to CSV
 # ----------------------------
 # Convert SummarizedExperiment assays to matrix and save
 df <- data.frame(
@@ -114,7 +95,7 @@ df <- data.frame(
   Pval = assays(features)$Pval
 )
 
-filename <- file.path(project_path, "DEGs_Control_OE.csv")
+filename <- file.path(project_path, "DGEs_Control_OE.csv")
 write.csv(df, filename, row.names = FALSE)
 
 # ----------------------------
@@ -122,4 +103,4 @@ write.csv(df, filename, row.names = FALSE)
 # ----------------------------
 saveArchRProject(ArchRProj = myProject, outputDirectory = project_path, load = FALSE)
 
-cat("✅ DGE analysis complete. Heatmaps and CSV saved.\n")
+cat("✅ DGE analysis complete. Heatmap and CSV saved.\n")
