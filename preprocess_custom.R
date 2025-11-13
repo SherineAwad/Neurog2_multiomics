@@ -13,7 +13,7 @@ library(BSgenome)
 library(rtracklayer)
 
 setwd(getwd())
-addArchRThreads(threads = 6)
+addArchRThreads(threads = 8)
 
 # Parse arguments
 parser <- ArgumentParser(description = "ArchR project")
@@ -30,7 +30,7 @@ library(BSgenome.Mmusculus.custom.neurog2)
 custom_genome <- Mmusculus
 
 # Create gene annotation
-gtf_file <- "neurog2.gtf"
+gtf_file <- "neurog2_fixed.gtf"
 gtf <- import(gtf_file)
 genes <- gtf[gtf$type == "gene"]
 exons <- gtf[gtf$type == "exon"]
