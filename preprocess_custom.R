@@ -43,8 +43,7 @@ geneAnnotation <- createGeneAnnotation(
 )
 
 # Create genome annotation
-genomeAnnotation <- createGenomeAnnotation(genome = custom_genome)
-
+genomeAnnotation <- createGenomeAnnotation(genome = custom_genome, filter=FALSE, filterChr=NULL)
 # Create ArrowFiles
 ArrowFiles <- createArrowFiles(
   inputFiles = atacFiles,
