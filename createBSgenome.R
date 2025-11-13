@@ -102,7 +102,10 @@ writeLines(desc_content, file.path(pkg_dir, "DESCRIPTION"))
 
 cat("Step 5: Creating NAMESPACE file...\n")
 
-writeLines('export("Mmusculus")', file.path(pkg_dir, "NAMESPACE"))
+namespace_content <- 'export("Mmusculus")
+export("BSgenome.Mmusculus.custom.neurog2")'
+
+writeLines(namespace_content, file.path(pkg_dir, "NAMESPACE"))
 
 # =============================================================================
 # Step 6: Create R file with EXACT sequence names
@@ -130,18 +133,30 @@ r_code <- sprintf('
     seqs_dirpath = system.file("extdata", package = "%s")
 )
 
-# Set the metadata properly
+# Set the pkgname slot
+.Mmusculus@pkgname <- "BSgenome.Mmusculus.custom.neurog2"
+
+# Set COMPLETE metadata
 metadata(.Mmusculus) <- list(
     genome = "neurog2",
-    organism = "Mus musculus"
+    organism = "Mus musculus",
+    provider = "Custom",
+    provider_version = "neurog2", 
+    release_date = "%s",
+    release_name = "neurog2",
+    source_url = "",
+    common_name = "Mouse",
+    BSgenomeObjname = "Mmusculus"
 )
 
 Mmusculus <- .Mmusculus
+BSgenome.Mmusculus.custom.neurog2 <- .Mmusculus
 ',
 format(Sys.Date(), "%Y/%m/%d"),
 seqnames_vector,
 package_name,
-package_name)
+package_name,
+format(Sys.Date(), "%Y/%m/%d"))
 
 writeLines(r_code, file.path(pkg_dir, "R", paste0(package_name, ".R")))
 
