@@ -2,7 +2,7 @@
 
 # =============================================================================
 # Script: createBSgenome.R
-# Description: Create BSgenome package ONLY
+# Description: Create BSgenome package ONLY (no installation)
 # =============================================================================
 
 # Load required libraries
@@ -83,13 +83,16 @@ Author: Custom
 Maintainer: Custom <custom@example.com>
 License: Artistic-2.0
 Depends: R (>= 4.0.0), BSgenome
+Imports: BSgenome
 Suggests: BiocStyle
 organism: Mus musculus
 common_name: Mouse
 genome: neurog2
 provider: Custom
 provider_version: neurog2
-BSgenomeObjname: Mmusculus', package_name)
+release_date: %s
+release_name: neurog2
+BSgenomeObjname: Mmusculus', package_name, format(Sys.Date(), "%Y/%m/%d"))
 
 writeLines(desc_content, file.path(pkg_dir, "DESCRIPTION"))
 
@@ -118,12 +121,19 @@ r_code <- sprintf('
     provider = "Custom", 
     provider_version = "neurog2",
     release_date = "%s",
+    release_name = "neurog2",
     source_url = "",
     seqnames = %s,
     circ_seqs = character(0),
     mseqnames = NULL,
     seqs_pkgname = "%s",
     seqs_dirpath = system.file("extdata", package = "%s")
+)
+
+# Set the metadata properly
+metadata(.Mmusculus) <- list(
+    genome = "neurog2",
+    organism = "Mus musculus"
 )
 
 Mmusculus <- .Mmusculus
@@ -135,15 +145,8 @@ package_name)
 
 writeLines(r_code, file.path(pkg_dir, "R", paste0(package_name, ".R")))
 
-# Verify the R code has correct names
-cat("Verifying R code sequence names...\n")
-r_content <- readLines(file.path(pkg_dir, "R", paste0(package_name, ".R")))
-seqnames_line <- grep("seqnames =", r_content, value = TRUE)
-cat("First 100 chars of seqnames line:\n")
-cat(substr(seqnames_line, 1, 100), "\n")
-
 # =============================================================================
-# Step 7: Build the package
+# Step 7: Build the package only (no install)
 # =============================================================================
 
 cat("Step 7: Building package...\n")
@@ -151,4 +154,13 @@ cat("Step 7: Building package...\n")
 build_cmd <- paste("R CMD build", pkg_dir)
 system(build_cmd)
 
-cat("\n=== BSGENOME PACKAGE CREATED ===\n")
+# Check if tar file was created
+tar_file <- list.files(pattern = paste0(package_name, ".*\\.tar\\.gz"))[1]
+if(file.exists(tar_file)) {
+  cat("✅ SUCCESS: Package built as", tar_file, "\n")
+  cat("To install, run: R CMD INSTALL --no-staged-install", tar_file, "\n")
+} else {
+  cat("❌ FAILED: Package tar file not created\n")
+}
+
+cat("\n=== BSGENOME PACKAGE CREATION COMPLETE ===\n")
